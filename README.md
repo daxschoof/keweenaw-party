@@ -1,2 +1,1 @@
 # keweenaw-party
-keweenaw-party
