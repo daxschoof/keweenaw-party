@@ -216,6 +216,7 @@ GameObject:
   - component: {fileID: 1385169428}
   - component: {fileID: 1385169427}
   - component: {fileID: 1385169426}
+  - component: {fileID: 1385169429}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -288,6 +289,20 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1385169429
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1385169425}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 702370d2d7979926aa87a661a09932ca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  snowy: 0
+  joystick: 0
 --- !u!1001 &6150540567314651241
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -302,6 +317,14 @@ PrefabInstance:
     - target: {fileID: 534855801495073633, guid: caf4a4c0751cc9044859fcd733ba420b, type: 3}
       propertyPath: m_RootOrder
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 534855801495073633, guid: caf4a4c0751cc9044859fcd733ba420b, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 534855801495073633, guid: caf4a4c0751cc9044859fcd733ba420b, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.25
       objectReference: {fileID: 0}
     - target: {fileID: 534855801495073633, guid: caf4a4c0751cc9044859fcd733ba420b, type: 3}
       propertyPath: m_LocalPosition.x
@@ -345,3 +368,33 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: caf4a4c0751cc9044859fcd733ba420b, type: 3}
+--- !u!1 &6150540567314651242 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 166332339275257300, guid: caf4a4c0751cc9044859fcd733ba420b, type: 3}
+  m_PrefabInstance: {fileID: 6150540567314651241}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &6150540567314651243
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6150540567314651242}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f538a00ea817c50c6869870948af9419, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  drag: 0.0075
+  slippyness: 100
+  maxSpeed: 5
+  maxSpeedSnowy: 10
+  maxAcceleration: 10
+  maxAccelerationSnowy: 7.5
+  rotateSpeed: 0.75
+  keyTurnSpeed: 1
+  keyLeft: a
+  keyBackward: s
+  keyForward: w
+  keyRight: d
+  velocity: {x: 0, y: 0, z: 0}
