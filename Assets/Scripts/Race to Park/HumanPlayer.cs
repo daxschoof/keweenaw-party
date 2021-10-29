@@ -28,8 +28,18 @@ public class HumanPlayer : MonoBehaviour {
 		if(main.snowy) maxAcceleration = maxAccelerationSnowy;
 	}
 
-	// Update is called once per frame
-	void Update() {
+	void Update()
+	{
+		if (GameController.instance.gamePlaying)
+		{
+			GetPlayerInput();
+		}
+		else
+		{
+		}
+	}
+
+	private void GetPlayerInput() {
 		Vector3 aim = transform.eulerAngles;
 		if(main.joystick) {
 			// TODO
