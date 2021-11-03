@@ -5,6 +5,11 @@ TagManager:
   serializedVersion: 2
   tags:
   - car
+  - frogAI
+  - frog
+  - leftborder
+  - rightborder
+  - bottomborder
   layers:
   - Default
   - TransparentFX

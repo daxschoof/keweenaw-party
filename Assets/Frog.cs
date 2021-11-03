@@ -38,5 +38,15 @@ public class Frog : MonoBehaviour
             Debug.Log("Got hit!");
             Rb.position = new Vector3(0, (float)-4.5, 0);
         }
+        if (collider.tag == "frogAI")
+        {
+            Debug.Log("Got hit by AI!");
+            Rb.position = new Vector3(0, (float)-4.5, 0);
+        }
+        if (collider.tag == "leftborder" || collider.tag == "rightborder" || collider.tag == "bottomborder")
+        {
+            Debug.Log("Hit the border");
+            Rb.position = new Vector3(0, (float)-4.5, 0);
+        }
     }
 }

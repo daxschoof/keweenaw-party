@@ -79,7 +79,12 @@ public class frogAI : MonoBehaviour
         }
         if (collider.tag == "frog")
         {
-            Debug.Log("Hit the palyer!");
+            Debug.Log("Hit the player!");
+            Rb.position = new Vector3((float)4.5, (float)-4.5, 0);
+        }
+        if (collider.tag == "leftborder" || collider.tag == "rightborder" || collider.tag == "bottomborder")
+        {
+            Debug.Log("Hit the border");
             Rb.position = new Vector3((float)4.5, (float)-4.5, 0);
         }
     }
