@@ -18,24 +18,72 @@ public class HumanPlayer : MonoBehaviour {
 	public string keyBackward;
 	public string keyForward;
 	public string keyRight;
+	public float joystickOverlap;
 	// Public to be able to check that player comes (mostly) to a stop in the space
 	public Vector3 velocity;
 	private RaceToParkMain main;
+	private Camera mainCamera;
+	private GameObject joystick, joystickHandle;
 
 	// Start is called before the first frame update
 	void Start() {
 		main = GameObject.Find("Main Camera").GetComponent<RaceToParkMain>();
+		mainCamera = GameObject.Find("Main Camera").GetComponent<Camera>();
+		joystick = GameObject.Find("Joystick");
+		joystickHandle = GameObject.Find("Joystick Handle");
 		if(main.snowy) maxAcceleration = maxAccelerationSnowy;
+		joystickOverlap = (joystick.GetComponent<Renderer>().bounds.size.x-joystickHandle.GetComponent<Renderer>().bounds.size.x)/2+joystickOverlap*joystickHandle.GetComponent<Renderer>().bounds.size.x;
 	}
 
 	void Update() {
 		if(!main.gamePlaying) return;
 		Vector3 aim = transform.eulerAngles;
 		if(main.joystick) {
-			// TODO
+			Vector2 pos = new Vector2(0, 0); // to be able to compile
+			if(Input.GetMouseButton(0))    pos = Input.mousePosition;
+			else if(Input.touchCount != 0) pos = Input.GetTouch(0).position;
+			if(Input.GetMouseButton(0) || Input.touchCount != 0) {
+				pos = mainCamera.ScreenToWorldPoint(pos);
+				// Show joystick for the first time
+				if(!joystick.GetComponent<SpriteRenderer>().enabled) {
+					joystick.GetComponent<SpriteRenderer>().enabled = true;
+					joystickHandle.GetComponent<SpriteRenderer>().enabled = true;
+					joystick.transform.position = new Vector3(
+						pos.x,
+						pos.y,
+						joystick.transform.position.z
+					);
+				}
+				// Update joystick and aim each frame
+				else {
+					joystickHandle.transform.position =
+						new Vector3(0, 0, joystickHandle.transform.position.z)+(Vector3)(
+							(Vector2)joystick.transform.position +
+							(pos-(Vector2)joystick.transform.position).normalized*Mathf.Min((pos-(Vector2)joystick.transform.position).magnitude, joystickOverlap)
+						)
+					;
+					aim.z += rotateSpeed*Mathf.DeltaAngle(
+						aim.z,
+						-Mathf.Atan2(
+							joystickHandle.transform.position.x-joystick.transform.position.x,
+							joystickHandle.transform.position.y-joystick.transform.position.y
+						)*Mathf.Rad2Deg
+					);
+				}
+			}
+			// Hide joystick
+			else {
+				joystick.GetComponent<SpriteRenderer>().enabled = false;
+				joystickHandle.GetComponent<SpriteRenderer>().enabled = false;
+				joystickHandle.transform.position = new Vector3(
+					joystick.transform.position.x,
+					joystick.transform.position.y,
+					joystickHandle.transform.position.z
+				);
+			}
 		}
 		else {
-			aim.z += keyTurnSpeed*(((Input.GetKey(keyLeft)) ? 1 : 0)-((Input.GetKey(keyRight) ? 1 : 0)));
+			aim.z += Time.deltaTime*keyTurnSpeed*(((Input.GetKey(keyLeft)) ? 1 : 0)-((Input.GetKey(keyRight) ? 1 : 0)));
 		}
 		// Unity docs say not to set one component
 		transform.eulerAngles = new Vector3(
@@ -48,15 +96,15 @@ public class HumanPlayer : MonoBehaviour {
 			velocity = Mathf.Min(maxSpeed, Mathf.Max(-maxSpeed,
 				Vector3.Dot(velocity, direction)*(1-drag)+(
 					(main.joystick)
-						? 0 // TODO
+						? Vector3.Dot(joystickHandle.transform.position-joystick.transform.position, direction)
 						: ((Input.GetKey(keyForward)) ? 1 : 0)-((Input.GetKey(keyBackward) ? 1 : 0))
 				)*(Time.deltaTime*maxAcceleration)
 			))*direction;
 		}
 		else {
-			velocity = velocity.magnitude*(1-drag)*(slippyness*velocity.normalized*Mathf.Sign(Vector3.Dot(velocity, direction))+direction).normalized+(
+			velocity = velocity.magnitude*(1-drag)*(slippyness*velocity.normalized+direction).normalized+(
 				(main.joystick)
-					? 0 // TODO
+					? Vector3.Dot(joystickHandle.transform.position-joystick.transform.position, direction)
 					: ((Input.GetKey(keyForward)) ? 1 : 0)-((Input.GetKey(keyBackward) ? 1 : 0))
 			)*(Time.deltaTime*maxAcceleration)*direction;
 			if(Mathf.Abs(velocity.magnitude) > maxSpeed) velocity = maxSpeed*velocity.normalized;
