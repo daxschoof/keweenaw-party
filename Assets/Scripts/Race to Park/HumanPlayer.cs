@@ -28,18 +28,8 @@ public class HumanPlayer : MonoBehaviour {
 		if(main.snowy) maxAcceleration = maxAccelerationSnowy;
 	}
 
-	void Update()
-	{
-		if (GameController.instance.gamePlaying)
-		{
-			GetPlayerInput();
-		}
-		else
-		{
-		}
-	}
-
-	private void GetPlayerInput() {
+	void Update() {
+		if(!main.gamePlaying) return;
 		Vector3 aim = transform.eulerAngles;
 		if(main.joystick) {
 			// TODO
