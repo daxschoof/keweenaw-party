@@ -213,6 +213,7 @@ GameObject:
   - component: {fileID: 173437607}
   - component: {fileID: 173437609}
   - component: {fileID: 173437608}
+  - component: {fileID: 173437610}
   m_Layer: 5
   m_Name: GameCountdownText
   m_TagString: MainCamera
@@ -272,7 +273,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: 'Time Left: 00:30'
+  m_Text: 'Time Left: 00:30:000'
 --- !u!222 &173437609
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -281,6 +282,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 173437606}
   m_CullTransparentMesh: 0
+--- !u!114 &173437610
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 173437606}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e19747de3f5aca642ab2be37e372fb86, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_EffectColor: {r: 0, g: 0, b: 0, a: 0.5}
+  m_EffectDistance: {x: 1, y: -1}
+  m_UseGraphicAlpha: 1
 --- !u!1 &186142273
 GameObject:
   m_ObjectHideFlags: 0
@@ -1377,6 +1393,7 @@ MonoBehaviour:
   lotSpriteRenderer: {fileID: 0}
   snowyLotSprite: {fileID: 21300000, guid: 376aad74921ccbe4da9e2fc6aa4cd76c, type: 3}
   normalLotSprite: {fileID: 21300000, guid: d2d5076e289eedc40b7d86ab081da8c0, type: 3}
+  isParked: 0
   endMenu: {fileID: 1717711362}
 --- !u!114 &1385169430
 MonoBehaviour:
@@ -1403,6 +1420,9 @@ MonoBehaviour:
   spotPrefab11: {fileID: 2104717030}
   spotPrefab12: {fileID: 1011776976}
   parkingSpaces: {fileID: 1821814498}
+  parkedCarPrefab: {fileID: 369510081895392222, guid: 245412de0d96d854cb8ec55736a6d71f, type: 3}
+  emptySpacePrefab: {fileID: 1361947156108286214, guid: c0deb709fabbe9849ad8ef01df6bc4c7, type: 3}
+  hiddenPrefab: {fileID: 8433747185208988334, guid: 8b0bad502acb14141ae61c67b0fca596, type: 3}
 --- !u!1001 &1399296469
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2680,6 +2700,7 @@ MonoBehaviour:
   keyForward: w
   keyRight: d
   joystickOverlap: 0.2
+  humanCollider: {fileID: 0}
   velocity: {x: 0, y: 0, z: 0}
 --- !u!70 &6150540567314651244
 CapsuleCollider2D:
@@ -2718,3 +2739,19 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!58 &6150540567314651246
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6150540567314651242}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 5

@@ -31,7 +31,7 @@ public class HumanPlayer : MonoBehaviour {
 		mainCamera = GameObject.Find("Main Camera").GetComponent<Camera>();
 		joystick = GameObject.Find("Joystick");
 		joystickHandle = GameObject.Find("Joystick Handle");
-		if(main.snowy) maxAcceleration = maxAccelerationSnowy;
+		if (main.snowy) maxAcceleration = maxAccelerationSnowy;
 		joystickOverlap = (joystick.GetComponent<Renderer>().bounds.size.x-joystickHandle.GetComponent<Renderer>().bounds.size.x)/2+joystickOverlap*joystickHandle.GetComponent<Renderer>().bounds.size.x;
 	}
 
@@ -110,5 +110,21 @@ public class HumanPlayer : MonoBehaviour {
 			if(Mathf.Abs(velocity.magnitude) > maxSpeed) velocity = maxSpeed*velocity.normalized;
 		}
 		transform.position += Time.deltaTime*velocity;
+	}
+
+	void OnTriggerEnter2D(Collider2D other)
+    {
+		if (other.gameObject.name.Contains("Hidden"))
+        {
+			other.gameObject.GetComponent<SpriteRenderer>().color = new Color(1f, 1f, 1f, 0f);
+		}
+    }
+
+	void OnTriggerExit2D(Collider2D other)
+	{
+		if (other.gameObject.name.Contains("Hidden"))
+        {
+			other.gameObject.GetComponent<SpriteRenderer>().color = new Color(0f, 0f, 0f, 1f);
+		}
 	}
 }

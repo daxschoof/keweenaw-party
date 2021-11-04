@@ -12,14 +12,16 @@ public class RaceToParkMain : MonoBehaviour {
 	public float timeRemaining = 30;
 	public SpriteRenderer lotSpriteRenderer;
 	public Sprite snowyLotSprite, normalLotSprite;
+	public bool isParked;
 	private int countdownTime = 3;
-	private Text countdown, gameCountdown;
+	private Text countdown, gameCountdown, result;
 	private float startTime, elapsedTime, timeLeft;
 	public GameObject endMenu;
 
 	// Start is called before the first frame update
 	private void Start() {
 		gamePlaying = false;
+		isParked = false;
 		snowy = (UnityEngine.Random.value > 0.5f);
 		lotSpriteRenderer = GameObject.Find("Lot9").GetComponent<SpriteRenderer>();
 		if (snowy)
@@ -32,6 +34,7 @@ public class RaceToParkMain : MonoBehaviour {
         }
 		countdown = GameObject.Find("Countdown Text").GetComponent<Text>();
 		gameCountdown = GameObject.Find("GameCountdownText").GetComponent<Text>();
+		result = GameObject.Find("ResultText").GetComponent<Text>();
 		countdown.gameObject.SetActive(true);
 		gameCountdown.gameObject.SetActive(true);
 		endMenu.gameObject.SetActive(false);
@@ -40,12 +43,19 @@ public class RaceToParkMain : MonoBehaviour {
 
 	private void Update() {
 		if(gamePlaying) {
-			if (timeRemaining > 0)
+			
+            if (isParked)
             {
+				gamePlaying = false;
+				result.text = "You found a spot! :)\n+1 point";
+				endMenu.gameObject.SetActive(true);
+			}
+			else if (timeRemaining > 0)
+			{
 				timeRemaining -= Time.deltaTime;
 				DisplayTime(timeRemaining);
-            }
-            else
+			}
+			else
             {
 				timeRemaining = 0;
 				DisplayTime(timeRemaining);
