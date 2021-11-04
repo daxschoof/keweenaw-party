@@ -55,6 +55,7 @@ public class RaceToParkMain : MonoBehaviour {
 		}
 	}
 
+
 	IEnumerator StartCountdown() {
 		while(countdownTime > 0) {
 			countdown.text = countdownTime.ToString();
