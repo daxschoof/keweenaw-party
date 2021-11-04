@@ -397,6 +397,7 @@ GameObject:
   - component: {fileID: 482036487}
   - component: {fileID: 482036486}
   - component: {fileID: 482036485}
+  - component: {fileID: 482036488}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -487,6 +488,18 @@ Canvas:
   m_SortingLayerID: 873610299
   m_SortingOrder: 1
   m_TargetDisplay: 0
+--- !u!114 &482036488
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 482036483}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8ea833463ce202a4492a11353cfea68b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &487369076
 GameObject:
   m_ObjectHideFlags: 0
@@ -2308,16 +2321,16 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1385169429}
-        m_TargetAssemblyTypeName: RaceToParkMain, Assembly-CSharp
-        m_MethodName: OnButtonLoadScene
-        m_Mode: 5
+      - m_Target: {fileID: 482036488}
+        m_TargetAssemblyTypeName: MainMenuSwiitch, Assembly-CSharp
+        m_MethodName: switchScene
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: RaceToPark
+          m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &2022456515
@@ -2413,7 +2426,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -428562029
-  m_SortingLayer: -1
+  m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: d2d5076e289eedc40b7d86ab081da8c0, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}

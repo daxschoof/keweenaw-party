@@ -11,4 +11,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/RaceToPark.unity
     guid: cb7528722d8808f4391be235e15b7a38
+  - enabled: 1
+    path: Assets/Scenes/Main.unity
+    guid: d395ae1bdeafdd341ba37be050177bc8
   m_configObjects: {}
