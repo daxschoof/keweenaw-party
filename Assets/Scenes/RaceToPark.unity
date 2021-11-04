@@ -2700,7 +2700,6 @@ MonoBehaviour:
   keyForward: w
   keyRight: d
   joystickOverlap: 0.2
-  humanCollider: {fileID: 0}
   velocity: {x: 0, y: 0, z: 0}
 --- !u!70 &6150540567314651244
 CapsuleCollider2D:
@@ -2739,19 +2738,3 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!58 &6150540567314651246
-CircleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6150540567314651242}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  serializedVersion: 2
-  m_Radius: 5
