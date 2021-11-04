@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class RaceToParkMain : MonoBehaviour {
 	public bool snowy;
@@ -65,4 +66,9 @@ public class RaceToParkMain : MonoBehaviour {
 
 		gameCountdown.text = string.Format("Time left: {0:00}:{1:00}:{2:000}", minutes, seconds, fraction);
 	}
+
+	public void OnButtonLoadScene(string sceneToLoad)
+    {
+		SceneManager.LoadScene(sceneToLoad);
+    }
 }
