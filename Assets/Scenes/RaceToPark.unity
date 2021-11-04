@@ -7455,10 +7455,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 702370d2d7979926aa87a661a09932ca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  snowy: 0
+  snowy: 1
   joystick: 0
   gamePlaying: 0
   timeRemaining: 30
+  lotSpriteRenderer: {fileID: 0}
+  snowyLotSprite: {fileID: 21300000, guid: 376aad74921ccbe4da9e2fc6aa4cd76c, type: 3}
+  normalLotSprite: {fileID: 21300000, guid: d2d5076e289eedc40b7d86ab081da8c0, type: 3}
   endMenu: {fileID: 1717711362}
 --- !u!1001 &1385895570
 PrefabInstance:

@@ -10,6 +10,8 @@ public class RaceToParkMain : MonoBehaviour {
 	public bool joystick;
 	public bool gamePlaying;
 	public float timeRemaining = 30;
+	public SpriteRenderer lotSpriteRenderer;
+	public Sprite snowyLotSprite, normalLotSprite;
 	private int countdownTime = 3;
 	private Text countdown, gameCountdown;
 	private float startTime, elapsedTime, timeLeft;
@@ -18,6 +20,16 @@ public class RaceToParkMain : MonoBehaviour {
 	// Start is called before the first frame update
 	private void Start() {
 		gamePlaying = false;
+		snowy = (UnityEngine.Random.value > 0.5f);
+		lotSpriteRenderer = GameObject.Find("Lot9").GetComponent<SpriteRenderer>();
+		if (snowy)
+        {
+			lotSpriteRenderer.sprite = snowyLotSprite;
+        }
+        else
+        {
+			lotSpriteRenderer.sprite = normalLotSprite;
+        }
 		countdown = GameObject.Find("Countdown Text").GetComponent<Text>();
 		gameCountdown = GameObject.Find("GameCountdownText").GetComponent<Text>();
 		countdown.gameObject.SetActive(true);
