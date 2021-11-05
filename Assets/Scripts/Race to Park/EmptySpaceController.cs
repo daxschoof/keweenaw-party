@@ -13,7 +13,10 @@ public class EmptySpaceController : MonoBehaviour
     }
     void OnTriggerEnter2D(Collider2D collider)
     {
-          //  main.isParked = true;
+        if (collider.name == "Human Player")
+        {
+            main.isParked = true;
+        }
 
     }
 }

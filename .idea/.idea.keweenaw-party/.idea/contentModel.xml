@@ -15,6 +15,7 @@
             <e p="goal.cs" t="Include" />
           </e>
           <e p="Menu" t="Include">
+            <e p="Exit.cs" t="Include" />
             <e p="Menu.cs" t="Include" />
           </e>
           <e p="Race to Park" t="Include">
