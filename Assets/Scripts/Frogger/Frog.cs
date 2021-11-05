@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Frog : MonoBehaviour
 {
@@ -27,6 +28,11 @@ public class Frog : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.DownArrow))
             {
                 Rb.MovePosition(Rb.position + Vector2.down);
+            }
+
+            if (Input.GetKeyDown((KeyCode.Escape)))
+            {
+                SceneManager.LoadScene(0);
             }
         }
     }
