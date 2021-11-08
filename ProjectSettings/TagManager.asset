@@ -5,6 +5,11 @@ TagManager:
   serializedVersion: 2
   tags:
   - car
+  - frogAI
+  - frog
+  - leftborder
+  - rightborder
+  - bottomborder
   layers:
   - Default
   - TransparentFX
@@ -40,7 +45,10 @@ TagManager:
   - 
   m_SortingLayers:
   - name: Background
-    uniqueID: 3193647089
+    uniqueID: 1239234485
+    locked: 0
+  - name: FrontBackground
+    uniqueID: 3222493569
     locked: 0
   - name: Default
     uniqueID: 0

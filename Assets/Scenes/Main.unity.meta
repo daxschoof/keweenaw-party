@@ -1,5 +1,13 @@
 fileFormatVersion: 2
+<<<<<<< HEAD
+<<<<<<< HEAD:Assets/Scenes/Main.unity.meta
+guid: c0b63cc10201d1348ae470594422ddd8
+=======
+guid: 2cda990e2423bbf4892e6590ba056729
+>>>>>>> origin/main:Assets/Scenes/MainMenu.unity.meta
+=======
 guid: d395ae1bdeafdd341ba37be050177bc8
+>>>>>>> origin/main
 DefaultImporter:
   externalObjects: {}
   userData: 

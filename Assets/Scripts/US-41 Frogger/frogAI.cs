@@ -3,6 +3,16 @@ using UnityEngine;
 public class frogAI : MonoBehaviour
 {
     public Rigidbody2D Rb;
+	
+	public SpriteRenderer spriteRenderer;
+	
+	public Sprite forwardMoveSprite;
+	
+	public Sprite leftWardMoveSprite;
+	
+	public Sprite backwardMoveSprite;
+	
+	public Sprite rightwardMoveSprite;
 
     public float frogAIMoveTimer = 1f;
 
@@ -27,14 +37,17 @@ public class frogAI : MonoBehaviour
                 if (randomMove == 0)
                 {
                     Rb.MovePosition(Rb.position + Vector2.right);
+					spriteRenderer.sprite = rightwardMoveSprite;
                 }
                 else if (randomMove == 1)
                 {
                     Rb.MovePosition(Rb.position + Vector2.left);
+					spriteRenderer.sprite = leftWardMoveSprite;
                 }
                 else if (randomMove == 2)
                 {
                     Rb.MovePosition(Rb.position + Vector2.up);
+					spriteRenderer.sprite = forwardMoveSprite;
                 }
                 nextMoveTimer = Time.time + frogAIMoveTimer;
             }
@@ -47,14 +60,17 @@ public class frogAI : MonoBehaviour
                 if (randomMove == 0)
                 {
                     Rb.MovePosition(Rb.position + Vector2.right);
+					spriteRenderer.sprite = rightwardMoveSprite;
                 }
                 else if (randomMove == 1)
                 {
                     Rb.MovePosition(Rb.position + Vector2.left);
+					spriteRenderer.sprite = leftWardMoveSprite;
                 }
                 else if (randomMove == 2 || randomMove == 3 || randomMove == 4)
                 {
                     Rb.MovePosition(Rb.position + Vector2.up);
+					spriteRenderer.sprite = forwardMoveSprite;
                 }
                 nextMoveTimer = Time.time + frogAIMoveTimerEnraged;
             }
@@ -64,6 +80,7 @@ public class frogAI : MonoBehaviour
             if (nextMoveTimer <= Time.time)
             {
                 Rb.MovePosition(Rb.position + Vector2.up);
+				spriteRenderer.sprite = forwardMoveSprite;
                 nextMoveTimer = Time.time + frogAIMoveTimerEnraged2;
             }
         }
@@ -79,7 +96,12 @@ public class frogAI : MonoBehaviour
         }
         if (collider.tag == "frog")
         {
-            Debug.Log("Hit the palyer!");
+            Debug.Log("Hit the player!");
+            Rb.position = new Vector3((float)4.5, (float)-4.5, 0);
+        }
+        if (collider.tag == "leftborder" || collider.tag == "rightborder" || collider.tag == "bottomborder")
+        {
+            Debug.Log("Hit the border");
             Rb.position = new Vector3((float)4.5, (float)-4.5, 0);
         }
     }
