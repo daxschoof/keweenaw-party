@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Frog : MonoBehaviour
 {
@@ -37,6 +38,10 @@ public class Frog : MonoBehaviour
             {
                 Rb.MovePosition(Rb.position + Vector2.down);
 				spriteRenderer.sprite = backwardMoveSprite;
+            }
+            if (Input.GetKeyDown((KeyCode.Escape)))
+            {
+                SceneManager.LoadScene(0);
             }
         }
     }

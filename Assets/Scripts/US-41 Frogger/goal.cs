@@ -1,5 +1,7 @@
 using UnityEngine;
 using System;
+using System.Collections;
+using UnityEngine.SceneManagement;
 
 public class goal : MonoBehaviour
 {
@@ -20,6 +22,7 @@ public class goal : MonoBehaviour
 	
 		Debug.Log("Game ended. Score:  "+score);
         Time.timeScale = 0;
+		SceneManager.LoadScene(0);
     }
 	
 	int computeScore (float time)
@@ -28,4 +31,5 @@ public class goal : MonoBehaviour
 		time = (time > 0) ? (time * 33.33f) : 0f;
 		return (int) Math.Round(time);
 	}
+
 }
