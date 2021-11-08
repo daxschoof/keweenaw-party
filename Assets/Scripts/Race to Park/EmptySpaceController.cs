@@ -17,6 +17,5 @@ public class EmptySpaceController : MonoBehaviour
         {
             main.isParked = true;
         }
-
     }
 }
