@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ContentModelStore">
+    <e p="C:\Users\andre\.Rider2019.3\system\extResources" t="IncludeRecursive" />
+    <e p="C:\Users\andre\.Rider2019.3\system\resharper-host\local\Transient\ReSharperHost\v193\SolutionCaches\_keweenaw-party.2083680070.00" t="ExcludeRecursive" />
+    <e p="C:\Users\andre\Documents\GitHub\keweenaw-party" t="IncludeRecursive">
+      <e p="Assembly-CSharp.csproj" t="IncludeRecursive" />
+      <e p="Assets" t="Include">
+        <e p="Scripts" t="Include">
+          <e p="Frogger" t="Include">
+            <e p="Car.cs" t="Include" />
+            <e p="carspawner.cs" t="Include" />
+            <e p="Frog.cs" t="Include" />
+            <e p="frogAI.cs" t="Include" />
+            <e p="goal.cs" t="Include" />
+          </e>
+          <e p="Menu" t="Include">
+            <e p="Exit.cs" t="Include" />
+            <e p="Menu.cs" t="Include" />
+          </e>
+          <e p="Race to Park" t="Include">
+            <e p="EmptySpaceController.cs" t="Include" />
+            <e p="HumanPlayer.cs" t="Include" />
+            <e p="MainMenuSwiitch.cs" t="Include" />
+            <e p="ParkingSpotController.cs" t="Include" />
+            <e p="RaceToParkMain.cs" t="Include" />
+          </e>
+        </e>
+      </e>
+      <e p="keweenaw-party.sln" t="IncludeFlat" />
+      <e p="obj" t="ExcludeRecursive" />
+      <e p="Packages" t="ExcludeRecursive" />
+      <e p="Temp\Bin" t="ExcludeRecursive" />
+    </e>
+  </component>
+</project>
