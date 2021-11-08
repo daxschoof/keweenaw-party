@@ -8,6 +8,7 @@ public class EmptySpaceController : MonoBehaviour
 
     void Start()
     {
+        
         main = GameObject.Find("Main Camera").GetComponent<RaceToParkMain>();
     }
     void OnTriggerEnter2D(Collider2D collider)
@@ -16,6 +17,5 @@ public class EmptySpaceController : MonoBehaviour
         {
             main.isParked = true;
         }
-            
     }
 }
