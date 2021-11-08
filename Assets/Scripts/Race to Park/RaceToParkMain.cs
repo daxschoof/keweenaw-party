@@ -20,6 +20,7 @@ public class RaceToParkMain : MonoBehaviour {
 
 	// Start is called before the first frame update
 	private void Start() {
+		Time.timeScale = 1;
 		gamePlaying = false;
 		isParked = false;
 		snowy = (UnityEngine.Random.value > 0.5f);
