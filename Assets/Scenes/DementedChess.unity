@@ -221,4 +221,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   blackSquare: {fileID: 2024973442627487598, guid: 650fd5ed345e82be9857f73a64616b3b, type: 3}
   whiteSquare: {fileID: 5645885918986548358, guid: 4a84f5ad2235f5d24ae9c778b8e778da, type: 3}
+  pawn: {fileID: 7624959569534167093, guid: 9c174154f243ff8b7973b9403a18a4ec, type: 3}
+  bishop: {fileID: 2017857322401236255, guid: 8b616e027650bdabea85378fcca3da9d, type: 3}
+  knight: {fileID: 5078035981183235006, guid: 1abbd0cb19a07cd93b84345390aa2907, type: 3}
+  rook: {fileID: 8129212656912833645, guid: e56740711e7cac4b9af8f14654dbf6dd, type: 3}
+  queen: {fileID: 5764691134815286342, guid: af7eac7473684045885fc87b7aab34c7, type: 3}
+  king: {fileID: 561169857938433806, guid: 78d4bee5609039585a9a0726250f387c, type: 3}
   boardSize: 8
