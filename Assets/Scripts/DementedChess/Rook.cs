@@ -4,6 +4,6 @@ using UnityEngine;
 
 public class Rook : Piece {
 	public override bool canMove(Vector2 pos) {
-		return true;
+		return pos.x-boardPos.x == 0 || pos.y-boardPos.y == 0;
 	}
 }

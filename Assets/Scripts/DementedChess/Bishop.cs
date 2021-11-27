@@ -4,6 +4,6 @@ using UnityEngine;
 
 public class Bishop : Piece {
 	public override bool canMove(Vector2 pos) {
-		return true;
+		return Mathf.Abs(pos.x-boardPos.x) == Mathf.Abs(pos.y-boardPos.y);
 	}
 }
