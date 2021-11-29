@@ -11,7 +11,19 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/RaceToPark.unity
     guid: cb7528722d8808f4391be235e15b7a38
+  - enabled: 0
+    path: 
+    guid: 00000000000000000000000000000000
   - enabled: 1
     path: Assets/Scenes/Main.unity
-    guid: d395ae1bdeafdd341ba37be050177bc8
+    guid: a7a888c302c96f6449eef3844d267e99
+  - enabled: 1
+    path: Assets/Scenes/Frogger.unity
+    guid: c0b63cc10201d1348ae470594422ddd8
+  - enabled: 1
+    path: Assets/Scenes/PianoTiles.unity
+    guid: 06edc9f9f43e2064d80ee3c91dcb9937
+  - enabled: 1
+    path: Assets/Scenes/DementedChess.unity
+    guid: 6913ed6789a232e57a02346fd75481d4
   m_configObjects: {}
