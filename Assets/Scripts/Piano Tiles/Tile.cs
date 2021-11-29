@@ -8,7 +8,7 @@ public class Tile : MonoBehaviour
 
 	public float minSpeed = 8f;
 	public float maxSpeed = 12f;
-	public float tileSpeed = 10f;
+	public float tileSpeed = 20f;
 	public SpriteRenderer color;
 
 	void Start()
