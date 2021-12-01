@@ -6,9 +6,12 @@ using UnityEngine.SceneManagement;
 
 public class goal : MonoBehaviour
 {
+	// Max amount of time while player can still achieve positive score
 	public float maxTime;
+	
 	public GameObject endMenu;
 
+	public GameObject resultText;
 	
 	// Start is called before the first frame update
 	private void Start()
@@ -24,13 +27,13 @@ public class goal : MonoBehaviour
 		if (collider.tag == "frog")
 		{
 			score = computeScore(Time.time);
-			endMenu.SetActive(true);
 		} 
 		else
 		{
 			score = 0;
 		}
-	
+		resultText.GetComponent<Text>().text = "Score: "+score;
+		endMenu.SetActive(true);
 		Debug.Log("Game ended. Score:  "+score);
         Time.timeScale = 0;
     }
