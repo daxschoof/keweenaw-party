@@ -10,6 +10,7 @@ TagManager:
   - leftborder
   - rightborder
   - bottomborder
+  - endmenu
   layers:
   - Default
   - TransparentFX

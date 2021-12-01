@@ -22,9 +22,9 @@ public class frogAI : MonoBehaviour
 
     float nextMoveTimer = 0f;
 
-    float enrageTimer;
+    float enrageTimer = 5f;
 
-    float enrageTimer2;
+    float enrageTimer2 = 10f;
 	
 	private void Start()
 	{

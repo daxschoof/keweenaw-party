@@ -44,7 +44,7 @@ public class goal : MonoBehaviour
 	
 	public void reloadGame() {
 		Time.timeScale = 1;
-		SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+		Scene$$anonymous$$anager.LoadScene(Scene$$anonymous$$anager.GetActiveScene().name);
 	}
 	
 	public void loadMenu() {
