@@ -5,7 +5,13 @@ using UnityEngine.SceneManagement;
 
 public class goal : MonoBehaviour
 {
-	public float maxTime = 30f;
+	public float maxTime;
+	
+	// Start is called before the first frame update
+	private void Start()
+	{
+		maxTime = Time.time + 30f;
+	}
 	
     void OnTriggerEnter2D (Collider2D collider)
     {
