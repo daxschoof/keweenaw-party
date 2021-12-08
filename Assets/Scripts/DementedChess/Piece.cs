@@ -9,7 +9,7 @@ public abstract class Piece : MonoBehaviour {
 	//public bool blackSprite;
 	private bool dragging;
 	private bool wasDragging = false;
-	private static DementedChessMain main;
+	protected static DementedChessMain main;
 	private static Camera mainCamera;
 
 	// Start is called before the first frame update
@@ -47,10 +47,11 @@ public abstract class Piece : MonoBehaviour {
 					main.boardSize/2f-0.5f+pos.x,
 					main.boardSize/2f-0.5f-pos.y
 				);
-				if(newBoardPos.x >= 0 && newBoardPos.x < main.boardSize &&
-				   newBoardPos.y >= 0 && newBoardPos.y < main.boardSize &&
-				   main.occupied[(int)newBoardPos.x][(int)newBoardPos.y] != ((white) ? 1 : 2) &&
-				   canMove(newBoardPos)
+				if(
+					newBoardPos.x >= 0 && newBoardPos.x < main.boardSize &&
+					newBoardPos.y >= 0 && newBoardPos.y < main.boardSize &&
+					main.occupied[(int)newBoardPos.x][(int)newBoardPos.y] != ((white) ? 1 : 2) &&
+					canMove(newBoardPos)
 				) {
 					main.occupied[(int)boardPos.x][(int)boardPos.y] = 0;
 					boardPos = newBoardPos;

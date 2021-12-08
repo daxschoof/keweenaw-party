@@ -227,4 +227,4 @@ MonoBehaviour:
   rook: {fileID: 8129212656912833645, guid: e56740711e7cac4b9af8f14654dbf6dd, type: 3}
   queen: {fileID: 5764691134815286342, guid: af7eac7473684045885fc87b7aab34c7, type: 3}
   king: {fileID: 561169857938433806, guid: 78d4bee5609039585a9a0726250f387c, type: 3}
-  boardSize: 8
+  boardSize: 0

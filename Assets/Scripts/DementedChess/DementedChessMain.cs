@@ -13,12 +13,17 @@ public class DementedChessMain : MonoBehaviour {
 	public GameObject king;
 	public int boardSize;
 	public int[][] occupied; // 0 not occupied, 1 by white, 2 by black
+	private Piece[] black;
 
 	// Start is called before the first frame update
 	void Start() {
+		if(boardSize == 0) boardSize = (int)(3+UnityEngine.Random.value*(10+1-3));
 		occupied = new int[boardSize][];
-		GetComponent<Camera>().orthographicSize = Mathf.Max(1, ((float)Screen.height/Screen.width))*boardSize/2f;
 		for(int i = 0; i < boardSize; i++) { occupied[i] = new int[boardSize]; }
+		black = new Piece[2*boardSize];
+		for(int i = 0; i < 2*boardSize; i++) { black[i] = null; }
+
+		GetComponent<Camera>().orthographicSize = Mathf.Max(1, ((float)Screen.height/Screen.width))*boardSize/2f;
 		for(int i = 0; i < boardSize; i++) {
 			for(int j = 0; j < boardSize; j++) {
 				Instantiate((((((i+1)%4 < 2) ? 2 : 0)+j+1)%4 < 2) ? blackSquare : whiteSquare, new Vector3(
@@ -38,6 +43,7 @@ public class DementedChessMain : MonoBehaviour {
 					piece.boardPos = new Vector2(i, (boardSize-1)/2f+white*((boardSize-1)/2f-1));
 					if(white != 1) {
 						piece.gameObject.GetComponent<SpriteRenderer>().color = new Color(0.5f, 0.5f, 0.5f);
+						black[i] = piece;
 					}
 					occupied[(int)piece.boardPos.x][(int)piece.boardPos.y] = (white == 1) ? 1 : 2;
 				}
@@ -73,6 +79,7 @@ public class DementedChessMain : MonoBehaviour {
 				piece.boardPos = new Vector2((white == 1) ? i : (boardSize-1)-i, (boardSize-1)/2f+white*((boardSize-1)/2f));
 				if(white != 1) {
 					piece.gameObject.GetComponent<SpriteRenderer>().color = new Color(0.5f, 0.5f, 0.5f);
+					black[boardSize+pieces] = piece;
 				}
 				occupied[(int)piece.boardPos.x][(int)piece.boardPos.y] = (white == 1) ? 1 : 2;
 				i = next;
@@ -82,6 +89,27 @@ public class DementedChessMain : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update() {
-		
+		if(Time.frameCount%180 == 0) {
+			Vector2 newBoardPos = new Vector2(
+				(int)(boardSize*UnityEngine.Random.value),
+				(int)(boardSize*UnityEngine.Random.value)
+			);
+			int i = 101%(2*boardSize);
+			for(int j = 0; j < 2*boardSize; j++) {
+				if(black[i] != null) {
+					if(occupied[(int)newBoardPos.x][(int)newBoardPos.y] != 2 && black[i].canMove(newBoardPos)) {
+						occupied[(int)black[i].boardPos.x][(int)black[i].boardPos.y] = 0;
+						black[i].boardPos = newBoardPos;
+						occupied[(int)black[i].boardPos.x][(int)black[i].boardPos.y] = 2;
+						Vector2 pos = new Vector2(
+							-boardSize/2f+0.5f+newBoardPos.x,
+							boardSize/2f-0.5f-newBoardPos.y
+						);
+						black[i].transform.position = new Vector3(pos.x, pos.y, black[i].transform.position.z);
+					}
+				}
+				i = (i+101)%(2*boardSize);
+			}
+		}
 	}
 }
