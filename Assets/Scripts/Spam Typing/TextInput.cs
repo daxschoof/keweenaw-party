@@ -23,6 +23,7 @@ public class TextInput : MonoBehaviour
     private int updates = 0;
     public GameObject endText;
     public GameObject MainMenu;
+    public GameObject replayButton;
     private InputField inputField;
     protected string [] targetWords = {
         "Test","Husky","Hockey","Broomball","Sauna","Snow","Wear a hat","Rehki","MEEM","Wads dinner",
@@ -41,6 +42,7 @@ public class TextInput : MonoBehaviour
         inputField.Select();//Re-focus on the input field
         endText.gameObject.SetActive(false);
       MainMenu.gameObject.SetActive(false);
+      replayButton.gameObject.SetActive(false);
     }
     private void Update()
     {
@@ -71,6 +73,8 @@ public class TextInput : MonoBehaviour
           inputFeild.gameObject.SetActive(false);
           scoreDisplay.gameObject.SetActive(false);
           targetText.gameObject.SetActive(false);
+          replayButton.gameObject.SetActive(true);
+          time.gameObject.SetActive(false);
 
           print("congrats you at the end of the game!!!");
         }
@@ -121,5 +125,24 @@ public class TextInput : MonoBehaviour
 public void mainMenuSwitch()
 {
   SceneManager.LoadScene(0);
+}
+public void replay()
+{
+  inputFeild.gameObject.SetActive(true);
+  scoreDisplay.gameObject.SetActive(true);
+  targetText.gameObject.SetActive(true);
+  targetText.GetComponent<Text>().text = targetWords[Random.Range(0,3)];
+    inputField = inputFieldObject.GetComponent<InputField>();
+    inputField.ActivateInputField(); //Re-focus on the input field
+    inputField.Select();//Re-focus on the input field
+    endText.gameObject.SetActive(false);
+  MainMenu.gameObject.SetActive(false);
+  replayButton.gameObject.SetActive(false);
+  time.gameObject.SetActive(true);
+  usedIndexIndex = 0;
+  usedIndex = null;
+  _numPlayed = 0;
+  _numWord= Random.Range(0, targetWords.Length);
+  _timer = 5;
 }
 }
