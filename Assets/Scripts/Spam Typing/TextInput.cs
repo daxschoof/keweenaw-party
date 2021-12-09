@@ -10,11 +10,15 @@ public class TextInput : MonoBehaviour
 {
     public String txt;
     public GameObject text;
+    public Text time ;
     public GameObject inputFeild;
     public GameObject targetText;
     private int _numWord = 0;
     public GameObject scoreDisplay;
     private int _score = 0;
+    private float _timer = 6;
+    private int _numPlayed = 0;
+    private int updates = 0;
     protected string [] targetWords = {
         "Test","Husky","Hockey","Broomball","Sauna","Snow","Wear a hat","Rehki","MEEM","Wads dinner",
         "DHH","Mcnair","programing","finals","Snowstorm","College of Computing"
@@ -23,22 +27,43 @@ public class TextInput : MonoBehaviour
     private int[] usedIndex = null;
     private int usedIndexIndex = 0;
 
+
     public void Start()
     {
-        targetText.GetComponent<Text>().text = targetWords[0];
+      targetText.GetComponent<Text>().text = targetWords[Random.Range(0,3)];
     }
-
+    private void Update()
+    {
+      updates++;
+      _timer = _timer - Time.deltaTime;
+      if(updates > 25)
+      {
+        time.GetComponent<Text>().text = " " + _timer;
+        updates = 0;
+      }
+      if(Input.GetKeyDown(KeyCode.Return))
+      {
+        print("enter was hit");
+        updateText();
+      }
+      if(_timer < 0)
+      {
+        _timer = 5;
+        updateText();
+      }
+    }
     public void updateText()
     {
+        _numPlayed++;
         if (usedIndex == null)
         {
             usedIndex = new int[targetWords.Length];
         }
-       
+
         usedIndex[usedIndexIndex] = _numWord;
         usedIndexIndex++;
         txt = inputFeild.GetComponent<Text>().text;
-       
+
 
         if (txt.Equals(targetWords[_numWord]))
         {
@@ -52,7 +77,7 @@ public class TextInput : MonoBehaviour
 
         //_numWord;
         _numWord= Random.Range(0, targetWords.Length);
-        
+
         for (int i = 0; i < usedIndexIndex; i++)
         {
             if (usedIndex[i] == _numWord)
@@ -68,7 +93,7 @@ public class TextInput : MonoBehaviour
 
         text.GetComponent<Text>().text = txt;
         text.GetComponent<Text>().fontSize = 40;
-        
+
     }
-    
+
 }
