@@ -20,6 +20,7 @@ public abstract class Piece : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update() {
+		if(main.paused) return;
 		if(main.occupied[(int)boardPos.x][(int)boardPos.y] != ((white) ? 1 : 2)) {
 			// TODO: add points
 			Destroy(gameObject);

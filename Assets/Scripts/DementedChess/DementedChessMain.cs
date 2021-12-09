@@ -13,10 +13,15 @@ public class DementedChessMain : MonoBehaviour {
 	public GameObject king;
 	public int boardSize;
 	public int[][] occupied; // 0 not occupied, 1 by white, 2 by black
+	public bool paused = false;
 	private Piece[] black;
+	private GameObject canvas;
 
 	// Start is called before the first frame update
 	void Start() {
+		canvas = GameObject.Find("Canvas");
+		canvas.SetActive(false);
+
 		if(boardSize == 0) boardSize = (int)(3+UnityEngine.Random.value*(10+1-3));
 		occupied = new int[boardSize][];
 		for(int i = 0; i < boardSize; i++) { occupied[i] = new int[boardSize]; }
@@ -89,6 +94,11 @@ public class DementedChessMain : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update() {
+		if(Input.GetKeyDown(KeyCode.Escape)) {
+			paused = !paused;
+			canvas.SetActive(paused);
+		}
+		if(paused) return;
 		if(Time.frameCount%180 == 0) {
 			Vector2 newBoardPos = new Vector2(
 				(int)(boardSize*UnityEngine.Random.value),
