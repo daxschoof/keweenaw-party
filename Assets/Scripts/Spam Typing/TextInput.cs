@@ -4,12 +4,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using Random = UnityEngine.Random;
+using UnityEngine.SceneManagement;
 
 
 public class TextInput : MonoBehaviour
 {
     public String txt;
-    public GameObject text;
+
     public Text time ;
     public GameObject inputFeild;
     public GameObject targetText;
@@ -19,6 +20,8 @@ public class TextInput : MonoBehaviour
     private float _timer = 6;
     private int _numPlayed = 0;
     private int updates = 0;
+    public GameObject endText;
+    public GameObject MainMenu;
     protected string [] targetWords = {
         "Test","Husky","Hockey","Broomball","Sauna","Snow","Wear a hat","Rehki","MEEM","Wads dinner",
         "DHH","Mcnair","programing","finals","Snowstorm","College of Computing"
@@ -31,6 +34,8 @@ public class TextInput : MonoBehaviour
     public void Start()
     {
       targetText.GetComponent<Text>().text = targetWords[Random.Range(0,3)];
+      endText.gameObject.SetActive(false);
+      MainMenu.gameObject.SetActive(false);
     }
     private void Update()
     {
@@ -43,13 +48,24 @@ public class TextInput : MonoBehaviour
       }
       if(Input.GetKeyDown(KeyCode.Return))
       {
-        print("enter was hit");
         updateText();
       }
       if(_timer < 0)
       {
         _timer = 5;
+
         updateText();
+        if(_numPlayed > 3)
+        {
+          endText.GetComponent<Text>().text = "You played spam typing and got a score of  " +_score;
+          endText.gameObject.SetActive(true);
+          MainMenu.gameObject.SetActive(true);
+          inputFeild.gameObject.SetActive(false);
+          scoreDisplay.gameObject.SetActive(false);
+          targetText.gameObject.SetActive(false);
+
+          print("congrats you at the end of the game!!!");
+        }
       }
     }
     public void updateText()
@@ -91,9 +107,11 @@ public class TextInput : MonoBehaviour
             targetText.GetComponent<Text>().text = targetWords[_numWord];
         }
 
-        text.GetComponent<Text>().text = txt;
-        text.GetComponent<Text>().fontSize = 40;
+
 
     }
-
+public void mainMenuSwitch()
+{
+  SceneManager.LoadScene(0);
+}
 }
