@@ -26,6 +26,8 @@ public class TextInput : MonoBehaviour
     public GameObject replayButton;
     private bool textUpdated = false;
     private InputField inputField;
+    private bool isPaused = false;
+    public Text pause;
     protected string [] targetWords = {
         "Test","Husky","Hockey","Broomball","Sauna","Snow","Wear a hat","Rehki","MEEM","Wads dinner",
         "DHH","Mcnair","programing","finals","Snowstorm","College of Computing","Java","C","Ripley","US 41","obligatory bridge pic",
@@ -39,6 +41,7 @@ public class TextInput : MonoBehaviour
 
     public void Start()
     {
+      pause.gameObject.SetActive(false);
       targetText.GetComponent<Text>().text = targetWords[Random.Range(0,3)];
         inputField = inputFieldObject.GetComponent<InputField>();
         inputField.ActivateInputField(); //Re-focus on the input field
@@ -48,46 +51,63 @@ public class TextInput : MonoBehaviour
       replayButton.gameObject.SetActive(false);
     }
     private void Update()
-    {
-
-      updates++;
-      _timer = _timer - Time.deltaTime;
-      if(textUpdated)
+  {
+      if(Input.GetKeyDown(KeyCode.Escape))
       {
-        _timer = 5;
-        textUpdated = false;
-        print("text was updated "+_timer);
-        time.GetComponent<Text>().text = " " +_timer;
-      }
-      else if(updates > 10)
-      {
-        time.GetComponent<Text>().text = " " + _timer;
-        updates = 0;
-      }
-      if(Input.GetKeyDown(KeyCode.Return))
-      {
-            inputField.ActivateInputField(); //Re-focus on the input field
-            inputField.Select();//Re-focus on the input field
-            updateText();
-        ;
-        }
-      if(_timer < 0)
-      {
-        _timer = 5;
-
-        updateText();
-        if(_numPlayed > 3)
+        isPaused = !isPaused;
+        if(isPaused)
         {
-          endText.GetComponent<Text>().text = "You played spam typing and got a score of  " +_score;
-          endText.gameObject.SetActive(true);
+          pause.gameObject.SetActive(true);
           MainMenu.gameObject.SetActive(true);
-          inputFeild.gameObject.SetActive(false);
-          scoreDisplay.gameObject.SetActive(false);
-          targetText.gameObject.SetActive(false);
-          replayButton.gameObject.SetActive(true);
-          time.gameObject.SetActive(false);
+        }
+        else
+        {
+          MainMenu.gameObject.SetActive(false);
+          pause.gameObject.SetActive(false);
+        }
+      }
 
-          print("congrats you at the end of the game!!!");
+      if(!isPaused)
+      {
+        updates++;
+        _timer = _timer - Time.deltaTime;
+        if(textUpdated)
+        {
+          _timer = 5;
+          textUpdated = false;
+          print("text was updated "+_timer);
+          time.GetComponent<Text>().text = " " +_timer;
+        }
+        else if(updates > 10)
+        {
+          time.GetComponent<Text>().text = " " + _timer;
+          updates = 0;
+        }
+        if(Input.GetKeyDown(KeyCode.Return))
+        {
+              inputField.ActivateInputField(); //Re-focus on the input field
+              inputField.Select();//Re-focus on the input field
+              updateText();
+
+          }
+        if(_timer < 0)
+        {
+          _timer = 5;
+
+          updateText();
+          if(_numPlayed > 3)
+          {
+            endText.GetComponent<Text>().text = "You played spam typing and got a score of  " +_score;
+            endText.gameObject.SetActive(true);
+            MainMenu.gameObject.SetActive(true);
+            inputFeild.gameObject.SetActive(false);
+            scoreDisplay.gameObject.SetActive(false);
+            targetText.gameObject.SetActive(false);
+            replayButton.gameObject.SetActive(true);
+            time.gameObject.SetActive(false);
+
+            print("congrats you at the end of the game!!!");
+          }
         }
       }
     }
