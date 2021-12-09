@@ -9,6 +9,7 @@ public class PianoTilesScore : MonoBehaviour
     // Update is called once per frame
     void Start()
     {
+        scoreValue = 0;
         // Get the current score text
         score = GetComponent<Text> ();
     }
