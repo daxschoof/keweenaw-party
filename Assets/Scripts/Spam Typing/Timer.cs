@@ -6,17 +6,38 @@ using System;
 
 public class Timer : MonoBehaviour
 {
-	public Text time ;
+	private Text time;
+	private float timeRemaining = 5;
 
 	private void Start()
 	{
-		time = GetComponent<Text>();
-
+		time = GameObject.Find("Timer").GetComponent<Text>();
+		Time.timeScale = 1;
 	}
 
-	void Update()
-    {		
-		string s = String.Format("11:59:{0} PM", Mathf.Round(Time.time).ToString().PadLeft(2, '0') );
-        time.text = s;
-    }
+    void Update()
+    {
+		if (timeRemaining > 0)
+		{
+			timeRemaining -= Time.deltaTime;
+			DisplayTime(timeRemaining);
+		}
+		else
+		{
+			timeRemaining = 5;
+			DisplayTime(timeRemaining);
+		}
+	}
+
+
+	void DisplayTime(float timeToDisplay)
+	{
+		int intTime = (int)timeToDisplay;
+		int minutes = intTime / 60;
+		int seconds = intTime % 60;
+		float fraction = timeToDisplay * 1000;
+		fraction = (fraction % 1000);
+
+		time.text = string.Format("{0:00}:{1:00}:{2:000}", minutes, seconds, fraction);
+	}
 }

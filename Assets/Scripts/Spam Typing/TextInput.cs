@@ -13,6 +13,7 @@ public class TextInput : MonoBehaviour
 
     public Text time ;
     public GameObject inputFeild;
+    public GameObject inputFieldObject;
     public GameObject targetText;
     private int _numWord = 0;
     public GameObject scoreDisplay;
@@ -22,6 +23,7 @@ public class TextInput : MonoBehaviour
     private int updates = 0;
     public GameObject endText;
     public GameObject MainMenu;
+    private InputField inputField;
     protected string [] targetWords = {
         "Test","Husky","Hockey","Broomball","Sauna","Snow","Wear a hat","Rehki","MEEM","Wads dinner",
         "DHH","Mcnair","programing","finals","Snowstorm","College of Computing"
@@ -34,7 +36,10 @@ public class TextInput : MonoBehaviour
     public void Start()
     {
       targetText.GetComponent<Text>().text = targetWords[Random.Range(0,3)];
-      endText.gameObject.SetActive(false);
+        inputField = inputFieldObject.GetComponent<InputField>();
+        inputField.ActivateInputField(); //Re-focus on the input field
+        inputField.Select();//Re-focus on the input field
+        endText.gameObject.SetActive(false);
       MainMenu.gameObject.SetActive(false);
     }
     private void Update()
@@ -48,8 +53,11 @@ public class TextInput : MonoBehaviour
       }
       if(Input.GetKeyDown(KeyCode.Return))
       {
-        updateText();
-      }
+            inputField.ActivateInputField(); //Re-focus on the input field
+            inputField.Select();//Re-focus on the input field
+            updateText();
+        ;
+        }
       if(_timer < 0)
       {
         _timer = 5;
@@ -81,7 +89,7 @@ public class TextInput : MonoBehaviour
         txt = inputFeild.GetComponent<Text>().text;
 
 
-        if (txt.Equals(targetWords[_numWord]))
+        if (txt.Equals(targetText.GetComponent<Text>().text))
         {
             _score++;
             scoreDisplay.GetComponent<Text>().text = "Score = " + _score;
@@ -107,7 +115,7 @@ public class TextInput : MonoBehaviour
             targetText.GetComponent<Text>().text = targetWords[_numWord];
         }
 
-
+        inputField.text = "";
 
     }
 public void mainMenuSwitch()
