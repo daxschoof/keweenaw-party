@@ -24,10 +24,13 @@ public class TextInput : MonoBehaviour
     public GameObject endText;
     public GameObject MainMenu;
     public GameObject replayButton;
+    private bool textUpdated = false;
     private InputField inputField;
     protected string [] targetWords = {
         "Test","Husky","Hockey","Broomball","Sauna","Snow","Wear a hat","Rehki","MEEM","Wads dinner",
-        "DHH","Mcnair","programing","finals","Snowstorm","College of Computing"
+        "DHH","Mcnair","programing","finals","Snowstorm","College of Computing","Java","C","Ripley","US 41","obligatory bridge pic",
+        "Snow Statues","winter carnival","Onomatopoeia","whats a snowday?","Pep band","Mitches misfits","brockway mountain","Copper Harbor"
+        ,"Eagle Harbor","Porcupine Mountains","Lake Superior"
     };
 
     private int[] usedIndex = null;
@@ -46,9 +49,17 @@ public class TextInput : MonoBehaviour
     }
     private void Update()
     {
+
       updates++;
       _timer = _timer - Time.deltaTime;
-      if(updates > 25)
+      if(textUpdated)
+      {
+        _timer = 5;
+        textUpdated = false;
+        print("text was updated "+_timer);
+        time.GetComponent<Text>().text = " " +_timer;
+      }
+      else if(updates > 10)
       {
         time.GetComponent<Text>().text = " " + _timer;
         updates = 0;
@@ -96,7 +107,8 @@ public class TextInput : MonoBehaviour
         if (txt.Equals(targetText.GetComponent<Text>().text))
         {
             _score++;
-            scoreDisplay.GetComponent<Text>().text = "Score = " + _score;
+            print("score!!!!"+_score);
+            scoreDisplay.GetComponent<Text>().text = "Score " + _score;
         }
         else
         {
@@ -120,6 +132,18 @@ public class TextInput : MonoBehaviour
         }
 
         inputField.text = "";
+        textUpdated = true;
+        if(_numPlayed > 7)
+        {
+          endText.GetComponent<Text>().text = "You played spam typing and got a score of  " +_score;
+          endText.gameObject.SetActive(true);
+          MainMenu.gameObject.SetActive(true);
+          inputFeild.gameObject.SetActive(false);
+          scoreDisplay.gameObject.SetActive(false);
+          targetText.gameObject.SetActive(false);
+          replayButton.gameObject.SetActive(true);
+          time.gameObject.SetActive(false);
+        }
 
     }
 public void mainMenuSwitch()
@@ -132,10 +156,10 @@ public void replay()
   scoreDisplay.gameObject.SetActive(true);
   targetText.gameObject.SetActive(true);
   targetText.GetComponent<Text>().text = targetWords[Random.Range(0,3)];
-    inputField = inputFieldObject.GetComponent<InputField>();
-    inputField.ActivateInputField(); //Re-focus on the input field
-    inputField.Select();//Re-focus on the input field
-    endText.gameObject.SetActive(false);
+  inputField = inputFieldObject.GetComponent<InputField>();
+  inputField.ActivateInputField(); //Re-focus on the input field
+  inputField.Select();//Re-focus on the input field
+  endText.gameObject.SetActive(false);
   MainMenu.gameObject.SetActive(false);
   replayButton.gameObject.SetActive(false);
   time.gameObject.SetActive(true);
