@@ -26,7 +26,7 @@ public class goal : MonoBehaviour
 		
 		if (collider.tag == "frog")
 		{
-			endMenu.SetActive(true);	
+			score = computeScore(Time.time);
 		} 
 		else
 		{
@@ -34,7 +34,7 @@ public class goal : MonoBehaviour
 		}
 		resultText.GetComponent<Text>().text = "Score: "+score;
 		endMenu.SetActive(true);
-		Debug.Log("Game ended. Score:  "+score);
+		Debug.Log("Game ended. \nScore:  "+score);
         Time.timeScale = 0;
     }
 	

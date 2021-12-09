@@ -34,7 +34,6 @@ public class goal : MonoBehaviour
 		}
 		resultText.GetComponent<Text>().text = "Score: "+score;
 		endMenu.SetActive(true);
-		Debug.Log("Game ended. Score:  "+score);
         Time.timeScale = 0;
     }
 	
