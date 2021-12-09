@@ -567,6 +567,7 @@ MonoBehaviour:
   maxTime: 30
   endMenu: {fileID: 1316151313}
   resultText: {fileID: 906471949}
+  gameOverText: {fileID: 676140561}
 --- !u!61 &723970475
 BoxCollider2D:
   m_ObjectHideFlags: 0

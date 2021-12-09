@@ -13,10 +13,31 @@ public class goal : MonoBehaviour
 
 	public GameObject resultText;
 	
+	public GameObject gameOverText;
+	
 	// Start is called before the first frame update
 	private void Start()
 	{
 		maxTime = Time.time + 30f;
+	}
+	
+	void Update()
+	{
+		if (Input.GetKeyDown(KeyCode.Escape))
+            {
+				if (endMenu.activeSelf)
+				{
+					Time.timeScale = 1;
+					endMenu.SetActive(false);
+				}
+				else
+				{
+					resultText.GetComponent<Text>().text = "";
+					gameOverText.GetComponent<Text>().text = "PAUSED";
+					endMenu.SetActive(true);
+					Time.timeScale = 0;
+				}
+            }
 	}
 	
     void OnTriggerEnter2D (Collider2D collider)
@@ -32,9 +53,9 @@ public class goal : MonoBehaviour
 		{
 			score = 0;
 		}
+		gameOverText.GetComponent<Text>().text = "Game Over";
 		resultText.GetComponent<Text>().text = "Score: "+score;
 		endMenu.SetActive(true);
-		Debug.Log("Game ended. \nScore:  "+score);
         Time.timeScale = 0;
     }
 	
