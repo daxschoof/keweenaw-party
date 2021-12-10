@@ -22,7 +22,7 @@ public abstract class Piece : MonoBehaviour {
 	void Update() {
 		if(main.paused) return;
 		if(main.occupied[(int)boardPos.x][(int)boardPos.y] != ((white) ? 1 : 2)) {
-			// TODO: add points
+			main.scoreValue += 1;
 			Destroy(gameObject);
 			Destroy(this);
 		}

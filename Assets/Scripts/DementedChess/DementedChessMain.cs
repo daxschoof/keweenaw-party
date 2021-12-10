@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.UI;
 using UnityEngine;
 
 public class DementedChessMain : MonoBehaviour {
@@ -14,13 +15,16 @@ public class DementedChessMain : MonoBehaviour {
 	public int boardSize;
 	public int[][] occupied; // 0 not occupied, 1 by white, 2 by black
 	public bool paused = false;
+	public int scoreValue = 0;
 	private Piece[] black;
-	private GameObject canvas;
+	private GameObject menu;
+	private float timeRemaining = 15;
 
 	// Start is called before the first frame update
 	void Start() {
-		canvas = GameObject.Find("Canvas");
-		canvas.SetActive(false);
+		Time.timeScale = 1;
+		menu = GameObject.Find("Menu");
+		menu.SetActive(false);
 
 		if(boardSize == 0) boardSize = (int)(3+UnityEngine.Random.value*(10+1-3));
 		occupied = new int[boardSize][];
@@ -94,11 +98,20 @@ public class DementedChessMain : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update() {
+		if(timeRemaining <= 0) {
+			paused = true;
+			menu.SetActive(true);
+			GameObject.Find("GameOverText").GetComponent<Text>().text = "\nGame Over!";
+			GameObject.Find("ResultText").GetComponent<Text>().text = "Score: " + scoreValue;
+			return;
+		}
 		if(Input.GetKeyDown(KeyCode.Escape)) {
 			paused = !paused;
-			canvas.SetActive(paused);
+			menu.SetActive(paused);
 		}
 		if(paused) return;
+		timeRemaining -= Time.deltaTime;
+		GameObject.Find("GameCountdownText").GetComponent<Text>().text = string.Format("Time left: {0:00}:{1:00}:{2:000}", ((int)timeRemaining)/60, ((int)timeRemaining)%60, (timeRemaining*1000)%1000);
 		if(Time.frameCount%180 == 0) {
 			Vector2 newBoardPos = new Vector2(
 				(int)(boardSize*UnityEngine.Random.value),
